@@ -28,6 +28,7 @@ open a web-browser to https://localhost:5001/swagger
 The swagger page exposes two endpoints:
 
 `/api/shipment`
+
 `/api/shipment/results`
 
 shipment will produce the shipments loaded into the in-memory database
