@@ -45,7 +45,11 @@ namespace LTLMastery.Web.Services
                         results.ShippedShipments.Add(new Shipment(shipment.PotentialShipmentId, truck.TruckId, shipment.Capacity));
                         break;
                     }
-                    results.UnshippedShipments.Add(new Shipment(shipment.PotentialShipmentId, null, shipment.Capacity));
+
+                    if( truck.TruckId == trucks.Last().TruckId)
+                    {
+                        results.UnshippedShipments.Add(new Shipment(shipment.PotentialShipmentId, null, shipment.Capacity));
+                    }
                 }
                 trucks = trucks.OrderByDescending(x => x.RemainingCapacity).ToList();
             }

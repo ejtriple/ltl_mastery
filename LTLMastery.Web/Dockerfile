@@ -1,20 +1,10 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim AS base
+FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
-WORKDIR /src
-COPY ["LTLMastery.Web/LTLMastery.Web.csproj", "LTLMastery.Web/"]
-RUN dotnet restore "LTLMastery.Web/LTLMastery.Web.csproj"
-COPY . .
-WORKDIR "/src/LTLMastery.Web"
-RUN dotnet build "LTLMastery.Web.csproj" -c Release -o /app
-
-FROM build AS publish
-RUN dotnet publish "LTLMastery.Web.csproj" -c Release -o /app
-
-FROM base AS final
+COPY *.csproj ./
+RUN dotnet restore ltlmastery.web.csproj
+COPY . ./
+RUN dotnet publish ltlmastery.web.csproj -c Release -o out
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS runtime
 WORKDIR /app
-COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "LTLMastery.Web.dll"]
+COPY — from=build /app/out .
+ENTRYPOINT [“dotnet”, ltlmastery.web.dll”]`
