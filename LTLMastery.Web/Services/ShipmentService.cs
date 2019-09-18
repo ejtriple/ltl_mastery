@@ -33,7 +33,7 @@ namespace LTLMastery.Web.Services
             var results = new ShippingResults();
 
             var potentialShipments = _dbContext.PotentialShipments.ToList();
-            var trucks = _dbContext.Trucks.OrderByDescending(x => x.RemainingCapacity).ToList();
+            var trucks = _dbContext.Trucks.OrderBy(x => x.RemainingCapacity).ToList();
 
             foreach (var shipment in potentialShipments)
             {
@@ -51,9 +51,10 @@ namespace LTLMastery.Web.Services
                         results.UnshippedShipments.Add(new Shipment(shipment.PotentialShipmentId, null, shipment.Capacity));
                     }
                 }
-                trucks = trucks.OrderByDescending(x => x.RemainingCapacity).ToList();
+                trucks = trucks.OrderBy(x => x.RemainingCapacity).ToList();
             }
 
+            results.Trucks = trucks.OrderBy( x => x.TruckId).ToList();
             return results;
         }
 
