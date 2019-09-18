@@ -10,10 +10,8 @@ Simple ASP.NET Core app using EF Core in-memory database to simulate the "best-f
 
 ### How to run
 
-Currently, this project has only been tested running as a .NET core app in a windows environment using dotnet run or within visual studio.
+Install the .NET Core SDK found here: https://dotnet.microsoft.com/download
 
-I wanted to run in a alpine docker image to be able to run cross-platform, however when testing on my Mac laptop, I was running into a variety of errors. 
-If cross-platform is essential for this demo, reach out to me at triplell89@gmail.com and I'll spend a bit of time getting it up and running.
 
 ### Testing steps
 
