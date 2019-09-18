@@ -31,6 +31,7 @@ The swagger page exposes two endpoints:
 `/api/shipment/results`
 
 shipment will produce the shipments loaded into the in-memory database
+
 shipment/results will run through the best-fit heuristic and produce a json response of the shippign results.
 
 The results contain a list of shipped and unshipped shipments and the capacity for both.
